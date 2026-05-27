@@ -1,0 +1,24 @@
+{
+  "name": "freeplantsapp",
+  "private": true,
+  "packageManager": "pnpm@10.30.3",
+  "engines": {
+    "node": ">=22"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild"
+    ]
+  },
+  "scripts": {
+    "dev": "pnpm --filter @plants/web dev",
+    "build": "pnpm --filter @plants/web build",
+    "preview": "pnpm --filter @plants/web preview",
+    "typecheck": "pnpm --filter @plants/web exec tsc -b",
+    "test": "pnpm --filter @plants/web test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/freeappstore-online/plants.git"
+  }
+}

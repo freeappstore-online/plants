@@ -1,0 +1,77 @@
+@import "tailwindcss";
+
+/* Fonts loaded via <link> in index.html (Manrope from Google Fonts) */
+
+:root {
+  /* Neutrals */
+  --paper: #ffffff;
+  --ink: #1a1a1a;
+  --muted: #6b7280;
+  --line: #e5e7eb;
+  --line-strong: #d1d5db;
+  --panel: #f9fafb;
+  --glass: rgba(255, 255, 255, 0.8);
+  --dock: #ffffff;
+
+  /* Status */
+  --success: #16a34a;
+  --warning: #d97706;
+  --error: #dc2626;
+
+  /* Accent — plant green */
+  --accent: #16a34a;
+  --accent-light: #bbf7d0;
+  --accent-dark: #15803d;
+
+  /* Plant-specific warm UI tones */
+  --warm: #92400e;
+  --warm-light: #fef3c7;
+
+  /* Fonts */
+  font-family: "Manrope", system-ui, sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #0f0f0f;
+    --ink: #f5f5f5;
+    --muted: #9ca3af;
+    --line: #2d2d2d;
+    --line-strong: #404040;
+    --panel: #1a1a1a;
+    --glass: rgba(15, 15, 15, 0.8);
+    --dock: #1a1a1a;
+
+    --success: #22c55e;
+    --warning: #fbbf24;
+    --error: #ef4444;
+
+    --accent: #22c55e;
+    --accent-light: #166534;
+    --accent-dark: #4ade80;
+
+    --warm: #fbbf24;
+    --warm-light: #422006;
+  }
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--line-strong);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--muted);
+}
