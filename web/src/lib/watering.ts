@@ -1,11 +1,12 @@
 import type { MyPlant, WateringStatus } from "../data/types";
+import { parseDateStr } from "./dates";
 
 /** Returns days since the plant was last watered, or null if never watered. */
 export function daysSinceLastWatered(plant: MyPlant): number | null {
   if (plant.wateringLog.length === 0) return null;
   const lastEntry = plant.wateringLog[plant.wateringLog.length - 1];
   if (!lastEntry) return null;
-  const lastDate = new Date(lastEntry.date);
+  const lastDate = parseDateStr(lastEntry.date);
   const now = new Date();
   const diffMs = now.getTime() - lastDate.getTime();
   return Math.floor(diffMs / (1000 * 60 * 60 * 24));
@@ -19,7 +20,7 @@ export function nextWateringDate(plant: MyPlant): Date {
   }
   const lastEntry = plant.wateringLog[plant.wateringLog.length - 1];
   if (!lastEntry) return new Date();
-  const lastDate = new Date(lastEntry.date);
+  const lastDate = parseDateStr(lastEntry.date);
   const next = new Date(lastDate);
   next.setDate(next.getDate() + plant.wateringDays);
   return next;
@@ -116,7 +117,7 @@ export function getPlantStats(plants: readonly MyPlant[]): {
 
     // Most consistent = most waterings relative to expected
     if (p.wateringLog.length > 0) {
-      const acquired = new Date(p.dateAcquired);
+      const acquired = parseDateStr(p.dateAcquired);
       const now = new Date();
       const daysSinceAcquired = Math.max(
         1,

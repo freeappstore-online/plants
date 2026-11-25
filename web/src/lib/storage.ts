@@ -1,4 +1,5 @@
 import type { MyPlant, WateringEntry } from "../data/types";
+import { todayStr } from "./dates";
 
 const STORAGE_KEY = "plants-my-plants";
 
@@ -52,7 +53,7 @@ export function logWatering(plantId: string): MyPlant[] {
   if (index !== -1) {
     const plant = plants[index]!;
     const entry: WateringEntry = {
-      date: new Date().toISOString().split("T")[0]!,
+      date: todayStr(),
       timestamp: Date.now(),
     };
     plants[index] = {

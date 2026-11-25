@@ -1,4 +1,5 @@
 import type { MyPlant } from "../data/types";
+import { formatDateStr, parseDateStr } from "./dates";
 
 export interface CalendarDay {
   readonly date: Date;
@@ -83,9 +84,9 @@ function isScheduledWateringDay(plant: MyPlant, date: Date): boolean {
   if (plant.wateringLog.length > 0) {
     const lastEntry = plant.wateringLog[plant.wateringLog.length - 1];
     if (!lastEntry) return false;
-    baseDate = new Date(lastEntry.date);
+    baseDate = parseDateStr(lastEntry.date);
   } else {
-    baseDate = new Date(plant.dateAcquired);
+    baseDate = parseDateStr(plant.dateAcquired);
   }
 
   baseDate.setHours(0, 0, 0, 0);
@@ -98,13 +99,6 @@ function isScheduledWateringDay(plant: MyPlant, date: Date): boolean {
     (target.getTime() - baseDate.getTime()) / (1000 * 60 * 60 * 24),
   );
   return diffDays > 0 && diffDays % plant.wateringDays === 0;
-}
-
-function formatDateStr(date: Date): string {
-  const y = date.getFullYear();
-  const m = String(date.getMonth() + 1).padStart(2, "0");
-  const d = String(date.getDate()).padStart(2, "0");
-  return `${y}-${m}-${d}`;
 }
 
 export function getMonthName(month: number): string {

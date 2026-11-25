@@ -6,6 +6,7 @@ import {
   daysUntilWatering,
 } from "../lib/watering";
 import { categoryLabels, locationEmojis } from "../data";
+import { parseDateStr } from "../lib/dates";
 import WateringBadge from "./WateringBadge";
 
 interface PlantDetailViewProps {
@@ -160,7 +161,7 @@ export default function PlantDetailView({
           <InfoItem label="Difficulty" value={plant.difficulty} />
           <InfoItem
             label="Acquired"
-            value={new Date(plant.dateAcquired).toLocaleDateString()}
+            value={parseDateStr(plant.dateAcquired).toLocaleDateString()}
           />
           <InfoItem
             label="Next watering"
@@ -241,7 +242,7 @@ export default function PlantDetailView({
                   style={{ background: "var(--accent)" }}
                 />
                 <span>
-                  {new Date(entry.date).toLocaleDateString(undefined, {
+                  {parseDateStr(entry.date).toLocaleDateString(undefined, {
                     weekday: "short",
                     month: "short",
                     day: "numeric",

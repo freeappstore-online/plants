@@ -8,6 +8,7 @@ import type {
   Location,
 } from "../data/types";
 import { getNextPlantColor } from "../lib/colors";
+import { todayStr } from "../lib/dates";
 
 interface AddPlantModalProps {
   readonly plant: PlantInfo | null; // null for custom plant
@@ -45,9 +46,7 @@ export default function AddPlantModal({
 
   const [nickname, setNickname] = useState("");
   const [location, setLocation] = useState<Location>("living room");
-  const [dateAcquired, setDateAcquired] = useState(
-    new Date().toISOString().split("T")[0]!,
-  );
+  const [dateAcquired, setDateAcquired] = useState(todayStr);
   const [wateringOverride, setWateringOverride] = useState(
     plant?.wateringDays.toString() ?? "7",
   );
